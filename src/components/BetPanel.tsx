@@ -1,23 +1,20 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { addBet, removeBet } from '../store/gameSlice';
-import React, { useState } from 'react';
+import { removeBet } from '../store/gameSlice';
+import React from 'react';
 import Dice from './Dice';
 
 interface BetPanelProps {
     balance: number;
 }
 
-const combinations = [
-    'Triple', 'Pair', 'Sum 9', 'Sum 12', 'Any',
-];
+// const combinations = [
+//     'Triple', 'Pair', 'Sum 9', 'Sum 12', 'Any',
+// ];
 
 const BetPanel: React.FC<BetPanelProps> = ({ balance }) => {
     const dice = useSelector((state: any) => state.game.dice);
     const bets = useSelector((state: any) => state.game.bets);
     const dispatch = useDispatch();
-    const userId = useSelector((state: any) => state.user.userId);
-    const [selectedCombo, setSelectedCombo] = useState(combinations[0]);
-    const [betAmount, setBetAmount] = useState(0);
     const tokens = [2, 5, 10];
     const tokenColors = {
         2: 'linear-gradient(135deg, #b2f7ef 0%, #40c9ff 100%)',

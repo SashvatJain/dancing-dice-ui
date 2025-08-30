@@ -1,6 +1,11 @@
 {
   "name": "dancing-dice-ui",
   "version": "0.1.0",
+  "homepage": "https://sashvatjain.github.io/dancing-dice-ui",
+  "description": "A React application for the Dancing Dice game.",
+  "main": "src/index.tsx",
+  "author": "Sashvat Jain",
+  "license": "UNLICENSED",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",
