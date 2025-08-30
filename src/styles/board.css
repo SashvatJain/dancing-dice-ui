@@ -1,0 +1,113 @@
+.half-height {
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Four Dice Section Styling */
+.four-dice-section {
+    background: #ffffff;
+    padding: 12px 0;
+    border-radius: 8px;
+    max-width: fit-content;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.logic {
+    background: #fff;
+    border-radius: 8px;
+    margin: 6px;
+    text-align: center;
+    justify-content: center;
+    border: 2px solid #ccc;
+    font-weight: 500;
+    font-size: 1rem;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    transition: background 0.2s, color 0.2s;
+}
+
+.game-sum-value {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.game-mainboard {
+    background: #1e90ff;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 24px auto;
+    max-width: "100%";
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.game-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+    width: 100%;
+}
+
+.game-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 12px;
+    /* background-color: #fff; */
+    border-radius: 8px;
+}
+
+.game-cell {
+    background: #fff;
+    border-radius: 8px;
+    margin: 6px;
+    text-align: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 1rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    transition: background 0.2s, color 0.2s;
+}
+
+.game-cell .payout {
+    font-size: 0.8rem;
+    color: #007bff;
+    margin-top: 4px;
+}
+
+.game-cell.highlight {
+    background: #ffe066;
+    color: #d35400;
+    border: 2px solid #d35400;
+}
+
+.game-cell.bigsmall {
+    min-width: 100px;
+    font-size: 1.2rem;
+}
+
+.game-cell.oddeven {
+    min-width: 100px;
+    font-size: 1.2rem;
+}
+
+.game-row.sums .game-cell {
+    min-width: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.game-row.triples .game-cell,
+.game-row.pairs .game-cell,
+.game-row.singles .game-cell {
+    min-width: 20px;
+}

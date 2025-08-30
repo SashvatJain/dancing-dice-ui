@@ -1,0 +1,53 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f7f7f7;
+    margin: 0;
+    padding: 0;
+}
+
+.board {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    margin: 24px auto;
+    max-width: "100%";
+}
+
+.dice-container {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin: 16px 0;
+}
+
+.dice {
+    font-size: 2rem;
+    background: #e3e3e3;
+    border-radius: 8px;
+    padding: 12px 24px;
+    height: fit-content;
+}
+
+.bet-panel {
+    margin: 24px 0;
+}
+
+.balance {
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+}
+
+.log,
+.user-log {
+    background: #f0f0f0;
+    border-radius: 8px;
+    padding: 12px;
+    margin: 16px 0;
+}
+
+.combination-highlight {
+    font-size: 1.1rem;
+    color: #007bff;
+    margin: 12px 0;
+}
