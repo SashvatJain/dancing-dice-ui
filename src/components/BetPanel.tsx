@@ -30,34 +30,16 @@ const BetPanel: React.FC<BetPanelProps> = ({ balance }) => {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const { GAME_PAYOUT_RATIOS } = require('../logic/combinations');
 
-    // Calculate winnings and log details
+    // Calculate winnings from userLogs
+    const userLogs = useSelector((state: any) => state.game.userLogs);
     let winnings = 0;
-    let winningLog: string[] = [];
-    bets.forEach((bet: any) => {
-        let winAmount = 0;
-        let payoutRatio = 0;
-        // let won = false;
-        // Single dice payout logic
-        if (bet.combination && bet.combination.startsWith('DICE_')) {
-            const diceNum = parseInt(bet.combination.split('_')[1], 10);
-            const matchCount = dice.filter((d: number) => d === diceNum).length;
-            if (matchCount > 0) {
-                payoutRatio = matchCount;
-                winAmount = bet.amount * payoutRatio;
-                winnings += winAmount;
-                // won = true;
-                winningLog.push(`WIN: $${winAmount} on ${bet.combination} (x${payoutRatio})`);
-            } else {
-                winningLog.push(`LOSE: $${bet.amount} on ${bet.combination}`);
-            }
-        } else if (bet.combination && GAME_PAYOUT_RATIOS[bet.combination]) {
-            payoutRatio = GAME_PAYOUT_RATIOS[bet.combination];
-            winAmount = bet.amount * payoutRatio;
-            winnings += winAmount;
-            // won = true;
-            winningLog.push(`WIN: $${winAmount} on ${bet.combination} (x${payoutRatio})`);
-        } else {
-            winningLog.push(`LOSE: $${bet.amount} on ${bet.combination}`);
+    userLogs.forEach((log: any) => {
+        if (log.bets && Array.isArray(log.bets)) {
+            log.bets.forEach((bet: any) => {
+                if (bet.won) {
+                    winnings += bet.winAmount || 0;
+                }
+            });
         }
     });
     const total = currentBalance + winnings;
@@ -101,7 +83,7 @@ const BetPanel: React.FC<BetPanelProps> = ({ balance }) => {
                 <span>Winnings: ${winnings}</span>
                 <span>Total: ${total}</span>
             </div>
-            {winningLog.length > 0 && (
+            {/* {winningLog.length > 0 && (
                 <div style={{ marginBottom: 8, fontSize: 14, color: '#1cae1c' }}>
                     <strong>Winning Log:</strong>
                     <ul style={{ margin: 0, paddingLeft: 16 }}>
@@ -110,7 +92,7 @@ const BetPanel: React.FC<BetPanelProps> = ({ balance }) => {
                         ))}
                     </ul>
                 </div>
-            )}
+            )} */}
 
             <div style={{ display: 'flex', gap: 12, margin: '16px 0' }}>
                 {tokens.map(token => (

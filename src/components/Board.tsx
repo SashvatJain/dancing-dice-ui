@@ -57,10 +57,10 @@ const sumPayouts: { [key: number]: string } = {
 const Board: React.FC<BoardProps> = ({ diceValues }) => {
     const dispatch = useDispatch();
     const userId = useSelector((state: any) => state.user.userId);
-    const combos = getGameCombinations(diceValues);
+    const winningCombos = getGameCombinations(diceValues);
 
     // Helper to check highlight
-    const isHighlighted = (combo: GameCombination) => combos.includes(combo);
+    const isHighlighted = (combo: GameCombination) => winningCombos.includes(combo);
 
     // Helper for drop logic
     const handleDrop = (type: string, value: any) => (e: React.DragEvent<HTMLDivElement>) => {
@@ -78,9 +78,16 @@ const Board: React.FC<BoardProps> = ({ diceValues }) => {
             cellDice = [];
         }
         console.log('Bet placed:', { type, value, token, userId, cellDice });
+        // Build combination label
+        const combination =
+            type === 'SUM' || type === 'SINGLE' || type === 'PAIR' || type === 'TRIPLE'
+                ? `${type}_${value}`
+                : (type === 'TWO_DICE' && Array.isArray(value) && value.length === 2)
+                    ? `TWO_DICE_${Math.min(value[0], value[1])}_${Math.max(value[0], value[1])}`
+                    : type;
         // Save bet in Redux store
         dispatch(addBet({
-            combination: type === 'SUM' || type === 'SINGLE' || type === 'PAIR' || type === 'TRIPLE' ? `${type}_${value}` : type,
+            combination,
             amount: Number(token),
             userId,
             cellDice
@@ -191,7 +198,9 @@ const Board: React.FC<BoardProps> = ({ diceValues }) => {
                     </div>
                     <div className="game-column" id="pairs">
                         <div className='game-row'>
-                            <div className='logic'>logic here</div>
+                            <div className='logic'>
+                                logic here
+                            </div>
                         </div>
                         <div className='game-row'>
                             {[4, 5, 6].map(n => (
@@ -272,7 +281,7 @@ const Board: React.FC<BoardProps> = ({ diceValues }) => {
                     {[1, 2, 3, 4, 5, 6].map(n => (
                         <div
                             key={n}
-                            className={`game-cell single ${isHighlighted(`DICE_${n}` as GameCombination) ? 'highlight' : ''}`}
+                            className={`game-cell single ${isHighlighted(`SINGLE_${n}` as GameCombination) ? 'highlight' : ''}`}
                             onDragOver={e => e.preventDefault()}
                             onDrop={handleDrop('SINGLE', n)}
                         >

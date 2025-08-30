@@ -1,9 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Bet } from '../types';
+import type { GameCombination } from '../logic/combinations';
 
 interface GameState {
     dice: number[];
     combination: string;
+    winningCombos: GameCombination[];
     bets: Bet[];
     logs: string[];
     userLogs: any[];
@@ -12,6 +14,7 @@ interface GameState {
 const initialState: GameState = {
     dice: [1, 2, 3],
     combination: 'Any',
+    winningCombos: [],
     bets: [],
     logs: [],
     userLogs: [],
@@ -21,9 +24,11 @@ const gameSlice = createSlice({
     name: 'game',
     initialState,
     reducers: {
-        rollDice(state, action: PayloadAction<{ dice: number[], combination: string }>) {
+        // Store all winning combinations for a roll, while keeping the first (or provided) as "combination" for compatibility
+        rollDice(state, action: PayloadAction<{ dice: number[], winningCombos: GameCombination[], combination?: string }>) {
             state.dice = action.payload.dice;
-            state.combination = action.payload.combination;
+            state.combination = action.payload.combination ?? action.payload.winningCombos[0] ?? 'Any';
+            state.winningCombos = action.payload.winningCombos;
         },
         addBet(state, action: PayloadAction<Bet>) {
             state.bets.push(action.payload);
