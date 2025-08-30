@@ -6,33 +6,6 @@ import '../styles/board.css';
 import type { GameCombination } from '../logic/combinations';
 import { getGameCombinations } from '../logic/combinations';
 
-
-// TwoDiceCell for react-dnd drop
-const TwoDiceCell: React.FC<{ group: number[], highlighted: boolean }> = ({ group, highlighted }) => {
-    return (
-        <div
-            onDragOver={e => e.preventDefault()}
-            onDrop={e => {
-                e.preventDefault();
-                const token = e.dataTransfer.getData('token');
-                console.log('Bet placed:', { group, token });
-                // TODO: Replace with actual bet saving logic
-            }}
-            className={`game-cell two-dice ${highlighted ? 'highlight' : ''}`}
-            style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: 2,
-            }}
-        >
-            {group.map((n, i) => (
-                <DiceFace key={i} value={n} size={22} />
-            ))}
-        </div>
-    );
-};
 // Two dice groups for the new section
 const twoDiceGroups = [
     [1, 2], [1, 3], [1, 4], [1, 5], [1, 6],

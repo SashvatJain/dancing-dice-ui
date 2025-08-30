@@ -11,8 +11,6 @@ import { setBalance } from './store/userSlice';
 import { logResult } from './store/apiActions';
 import { rollDice } from './logic/diceRoll';
 import { getGameCombinations, GameCombination } from './logic/combinations';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 import './styles/main.css';
 
 function App() {
@@ -82,21 +80,19 @@ function App() {
   };
 
   return (
-    <DndProvider backend={HTML5Backend}>
-      <div className="App">
-        <h1>Dancing Dice</h1>
-        <Balance balance={balance} />
-        <Board diceValues={dice} />
+    <div className="App">
+      <h1>Dancing Dice</h1>
+      <Balance balance={balance} />
+      <Board diceValues={dice} />
 
-        <BetPanel balance={balance} />
-
+      <BetPanel balance={balance} />
 
 
-        <button onClick={handleRoll} disabled={bets.length === 0}>Roll Dice</button>
-        <UserLog userLogs={userLogs} />
-        <Log logs={logs} />
-      </div>
-    </DndProvider>
+
+      <button onClick={handleRoll} disabled={bets.length === 0}>Roll Dice</button>
+      <UserLog userLogs={userLogs} />
+      <Log logs={logs} />
+    </div>
   );
 }
 
