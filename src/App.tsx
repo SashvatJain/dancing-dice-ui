@@ -1,4 +1,3 @@
-import React from 'react';
 import Board from './components/Board';
 import BetPanel from './components/BetPanel';
 import Balance from './components/Balance';
@@ -15,8 +14,8 @@ import './styles/main.css';
 
 function App() {
   const dispatch: AppDispatch = useDispatch();
-  const { dice, combination, bets, logs, userLogs } = useSelector((state: RootState) => state.game);
-  const { balance, userId, isLoggedIn } = useSelector((state: RootState) => state.user);
+  const { dice, bets, logs, userLogs } = useSelector((state: RootState) => state.game);
+  const { balance, userId } = useSelector((state: RootState) => state.user);
 
   const { GAME_PAYOUT_RATIOS } = require('./logic/combinations');
   const handleRoll = async () => {

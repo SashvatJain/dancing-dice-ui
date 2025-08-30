@@ -1,23 +1,20 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { addBet, removeBet } from '../store/gameSlice';
-import React, { useState } from 'react';
+import { removeBet } from '../store/gameSlice';
+import React from 'react';
 import Dice from './Dice';
 
 interface BetPanelProps {
     balance: number;
 }
 
-const combinations = [
-    'Triple', 'Pair', 'Sum 9', 'Sum 12', 'Any',
-];
+// const combinations = [
+//     'Triple', 'Pair', 'Sum 9', 'Sum 12', 'Any',
+// ];
 
 const BetPanel: React.FC<BetPanelProps> = ({ balance }) => {
     const dice = useSelector((state: any) => state.game.dice);
     const bets = useSelector((state: any) => state.game.bets);
     const dispatch = useDispatch();
-    const userId = useSelector((state: any) => state.user.userId);
-    const [selectedCombo, setSelectedCombo] = useState(combinations[0]);
-    const [betAmount, setBetAmount] = useState(0);
     const tokens = [2, 5, 10];
     const tokenColors = {
         2: 'linear-gradient(135deg, #b2f7ef 0%, #40c9ff 100%)',
@@ -39,7 +36,7 @@ const BetPanel: React.FC<BetPanelProps> = ({ balance }) => {
     bets.forEach((bet: any) => {
         let winAmount = 0;
         let payoutRatio = 0;
-        let won = false;
+        // let won = false;
         // Single dice payout logic
         if (bet.combination && bet.combination.startsWith('DICE_')) {
             const diceNum = parseInt(bet.combination.split('_')[1], 10);
@@ -48,7 +45,7 @@ const BetPanel: React.FC<BetPanelProps> = ({ balance }) => {
                 payoutRatio = matchCount;
                 winAmount = bet.amount * payoutRatio;
                 winnings += winAmount;
-                won = true;
+                // won = true;
                 winningLog.push(`WIN: $${winAmount} on ${bet.combination} (x${payoutRatio})`);
             } else {
                 winningLog.push(`LOSE: $${bet.amount} on ${bet.combination}`);
@@ -57,7 +54,7 @@ const BetPanel: React.FC<BetPanelProps> = ({ balance }) => {
             payoutRatio = GAME_PAYOUT_RATIOS[bet.combination];
             winAmount = bet.amount * payoutRatio;
             winnings += winAmount;
-            won = true;
+            // won = true;
             winningLog.push(`WIN: $${winAmount} on ${bet.combination} (x${payoutRatio})`);
         } else {
             winningLog.push(`LOSE: $${bet.amount} on ${bet.combination}`);

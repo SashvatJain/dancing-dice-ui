@@ -1,4 +1,3 @@
-import Dice from './Dice';
 import DiceFace from './DiceFace';
 import { useDispatch, useSelector } from 'react-redux';
 import { addBet } from '../store/gameSlice';
