@@ -15,7 +15,7 @@ import './styles/main.css';
 function App() {
   const dispatch: AppDispatch = useDispatch();
   const { dice, bets, logs, userLogs } = useSelector((state: RootState) => state.game);
-  const { balance, userId } = useSelector((state: RootState) => state.user);
+  const { balance } = useSelector((state: RootState) => state.user);
 
   console.log('User logs:', userLogs);
   const { GAME_PAYOUT_RATIOS } = require('./logic/combinations');

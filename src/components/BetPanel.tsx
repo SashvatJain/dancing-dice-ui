@@ -26,10 +26,6 @@ const BetPanel: React.FC<BetPanelProps> = ({ balance }) => {
     const totalBetAmount = bets.reduce((sum: number, bet: any) => sum + (bet.amount || 0), 0);
     const currentBalance = balance - totalBetAmount;
 
-    // Import payout ratios
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const { GAME_PAYOUT_RATIOS } = require('../logic/combinations');
-
     // Calculate winnings from userLogs
     const userLogs = useSelector((state: any) => state.game.userLogs);
     let winnings = 0;
