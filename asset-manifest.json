@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/dancing-dice-ui/static/css/main.98bd137c.css",
-    "main.js": "/dancing-dice-ui/static/js/main.cf2984e8.js",
+    "main.js": "/dancing-dice-ui/static/js/main.1a2245ad.js",
     "index.html": "/dancing-dice-ui/index.html",
     "main.98bd137c.css.map": "/dancing-dice-ui/static/css/main.98bd137c.css.map",
-    "main.cf2984e8.js.map": "/dancing-dice-ui/static/js/main.cf2984e8.js.map"
+    "main.1a2245ad.js.map": "/dancing-dice-ui/static/js/main.1a2245ad.js.map"
   },
   "entrypoints": [
     "static/css/main.98bd137c.css",
-    "static/js/main.cf2984e8.js"
+    "static/js/main.1a2245ad.js"
   ]
 }
